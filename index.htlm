@@ -44,7 +44,7 @@
          * APPLICATION LAYER (Clean Arch Logic)
          */
         const Config = {
-            whatsappNumber: "225000000000", // REMPLACE ICI
+            whatsappNumber: "237699340795",
             message: "Mon cher époux, j'accepte avec tout mon amour ! ❤️🌹"
         };
 

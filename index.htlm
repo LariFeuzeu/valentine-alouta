@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Pour Mme Alouta ❤️</title>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%); }
+        .font-romantic { font-family: 'Dancing Script', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center p-4">
+
+    <div class="glass max-w-lg w-full p-10 rounded-[40px] shadow-2xl text-center animate__animated animate__fadeIn">
+        
+        <div class="mb-6 text-6xl animate__animated animate__pulse animate__infinite">❤️</div>
+
+        <h1 class="font-romantic text-5xl text-red-600 mb-6">Mme Alouta...</h1>
+        
+        <p class="text-gray-700 text-lg mb-10 leading-relaxed">
+            Le monde est plus beau à tes côtés. <br>
+            <span class="font-semibold">Me ferais-tu l'honneur d'être ma Valentine ?</span>
+        </p>
+
+        <div class="relative h-20 flex justify-center items-center gap-6">
+            <button id="btn-oui" 
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-all hover:scale-110 active:scale-95 z-20">
+                OUI ! 🌹
+            </button>
+
+            <button id="btn-non" 
+                class="bg-gray-200 text-gray-500 font-medium py-2 px-6 rounded-full transition-all duration-100 z-10">
+                Non
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * APPLICATION LAYER (Clean Arch Logic)
+         */
+        const Config = {
+            whatsappNumber: "225000000000", // REMPLACE ICI
+            message: "Mon cher époux, j'accepte avec tout mon amour ! ❤️🌹"
+        };
+
+        const UiController = {
+            init() {
+                this.btnOui = document.getElementById('btn-oui');
+                this.btnNon = document.getElementById('btn-non');
+                this.bindEvents();
+            },
+
+            bindEvents() {
+                this.btnOui.addEventListener('click', () => this.sendResponse());
+                this.btnNon.addEventListener('mouseover', () => this.moveButton());
+                this.btnNon.addEventListener('touchstart', (e) => { e.preventDefault(); this.moveButton(); });
+            },
+
+            sendResponse() {
+                const url = `https://wa.me/${Config.whatsappNumber}?text=${encodeURIComponent(Config.message)}`;
+                window.location.href = url;
+            },
+
+            moveButton() {
+                const x = Math.random() * (window.innerWidth - this.btnNon.clientWidth);
+                const y = Math.random() * (window.innerHeight - this.btnNon.clientHeight);
+                
+                this.btnNon.style.position = 'fixed';
+                this.btnNon.style.left = `${x}px`;
+                this.btnNon.style.top = `${y}px`;
+            }
+        };
+
+        // Lancement
+        document.addEventListener('DOMContentLoaded', () => UiController.init());
+    </script>
+</body>
+</html>
